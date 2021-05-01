@@ -7,6 +7,7 @@
 #  youtube    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  artist_id  :integer
 #
 require 'rails_helper'
 
@@ -21,6 +22,11 @@ RSpec.describe Song, type: :model do
     end
     it "Should have the proper associations" do
       should belong_to(:artist).class_name("User")
+      should have_many(:song_playlists)
+      should have_many(:playlists).through(:song_playlists)
+    end
+    it "Should have the proper validations" do
+      
     end
   end
 end

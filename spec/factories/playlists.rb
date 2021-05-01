@@ -1,17 +1,16 @@
 # == Schema Information
 #
-# Table name: songs
+# Table name: playlists
 #
 #  id         :bigint           not null, primary key
 #  name       :string
-#  youtube    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  artist_id  :integer
+#  user_id    :integer
 #
 FactoryBot.define do
-  factory :song do
-    name { Faker::Name.name }
-    youtube { "https://www.youtube.com/watch?v=#{rand(100)}" }
+  factory :playlist do
+    name { "MyString" }
+    user_id { nil }
   end
 end

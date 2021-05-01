@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :playlists
   devise_for :users
   resources :songs
   root to: 'home#index'

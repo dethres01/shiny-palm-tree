@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'rexml', '~> 3.2.4'
 gem 'pry'
 gem 'devise'
+gem 'activestorage-audio'
+gem 'active_storage_validations'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
