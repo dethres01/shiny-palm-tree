@@ -26,7 +26,12 @@ RSpec.describe Song, type: :model do
       should have_many(:playlists).through(:song_playlists)
     end
     it "Should have the proper validations" do
-      
+      should validate_presence_of("name")
+      should validate_uniqueness_of("youtube")
+      should allow_value("https://www.youtube.com/watch?v=nB8g3n10_Z8&t=171s").for(:youtube)
+      should_not allow_value("hola").for(:youtube)
+      is_expected.to validate_attached_of(:song_file)
+      is_expected.to validate_content_type_of(:song_file).allowing('audio/mpeg')
     end
   end
 end
