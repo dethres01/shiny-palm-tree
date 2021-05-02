@@ -1,19 +1,25 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
   <%= @playlist.name %>
 </p>
-<% @playlist.songs.each do |song|%>
-  <p>
-    <%= song.name%>
-  </p>
-  <p>
-    <audio controls>
-      <source src="<%= rails_blob_url(song.song_file) %>" type="<%= song.song_file.content_type %>"></source>
-    </audio>    
-  </p>
-<%end%>
+<audio id="audio" preload="auto" tabindex="0" controls="">
+  <source src="<%= rails_blob_url(@playlist.songs.first.song_file)%>">
+</audio>
+<ul id="playlist_list">
+  <li class="active">
+    <a href="<%= rails_blob_url(@playlist.songs.first.song_file)%>">
+      <%= @playlist.songs.first.name%>
+    </a>
+  </li>
+  <% (@playlist.songs-[@playlist.songs.first]).each do |song|%>
+    <li>
+      <a href="<%= rails_blob_url(song.song_file)%>">
+        <%= song.name%>
+      </a>
+    </li>
+  <%end%>
+</ul>
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>

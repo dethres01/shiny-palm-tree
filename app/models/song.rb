@@ -17,7 +17,7 @@ class Song < ApplicationRecord
   has_one_attached :song_file
   #validations
   validates :name, presence: true
-  validates :youtube, uniqueness: true,format: { with: /\bhttps:\/\/www.youtube.com\/watch\?v=\w+\b/ , 
+  validates :youtube, uniqueness: true,format: { with: /\bhttps:\/\/www.youtube.com\/watch\?v=.+\b/ , 
     message: "has to have the proper format" }
   #Regex might need more work
   validates :song_file, attached: true, content_type: 'audio/mpeg'
