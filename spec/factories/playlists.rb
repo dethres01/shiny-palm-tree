@@ -10,7 +10,7 @@
 #
 FactoryBot.define do
   factory :playlist do
-    name { "MyString" }
-    user_id { nil }
+    name { Faker::Name.name }
+    user
   end
 end

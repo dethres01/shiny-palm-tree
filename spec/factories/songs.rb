@@ -13,5 +13,6 @@ FactoryBot.define do
   factory :song do
     name { Faker::Name.name }
     youtube { "https://www.youtube.com/watch?v=#{rand(100)}" }
+    user
   end
 end
