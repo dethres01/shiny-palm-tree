@@ -66,6 +66,8 @@ class PlaylistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def playlist_params
-      params.require(:playlist).permit(:name, :user_id)
+      params.require(:playlist).permit(:name,
+         :user_id, 
+         song_playlists_attributes: [:id,:song_id,:_destroy])
     end
 end

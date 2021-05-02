@@ -1,0 +1,5 @@
+<div class="nested-fields">
+  <%= f.input :_destroy, as: :hidden%>
+  <%= f.input :song_id, collection: Song.all%>
+  <%= link_to "remove song",'#', class: "remove_fields" %>
+</div>

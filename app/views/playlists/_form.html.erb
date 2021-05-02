@@ -1,4 +1,4 @@
-<%= form_with(model: playlist) do |form| %>
+<%= simple_form_for playlist do |f| %>
   <% if playlist.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
@@ -10,13 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <%= f.input :name %>
+  <h3>songs</h3>
+  <div id="songs">
+    <%= f.simple_fields_for :song_playlists do |song| %>
+      <%= render 'song_playlist_fields', f: song %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_fields 'add song', f, :song_playlists %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= f.button :submit %>
 <% end %>
