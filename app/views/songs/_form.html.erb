@@ -1,4 +1,4 @@
-<%= form_with(model: song) do |form| %>
+<%= simple_form_for song do |f| %>
   <% if song.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(song.errors.count, "error") %> prohibited this song from being saved:</h2>
@@ -10,18 +10,8 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :youtube %>
-    <%= form.text_field :youtube %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= f.input :name %>
+  <%= f.input :youtube %>
+  <%= f.input :song_file%>
+  <%= f.button :submit %>
 <% end %>

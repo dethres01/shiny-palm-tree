@@ -22,7 +22,7 @@ class SongsController < ApplicationController
   # POST /songs or /songs.json
   def create
     @song = Song.new(song_params)
-
+    @song.artist = current_user
     respond_to do |format|
       if @song.save
         format.html { redirect_to @song, notice: "Song was successfully created." }
@@ -64,6 +64,6 @@ class SongsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def song_params
-      params.require(:song).permit(:name, :youtube, :song_file)
+      params.require(:song).permit(:name, :youtube, :song_file,:artist_id)
     end
 end

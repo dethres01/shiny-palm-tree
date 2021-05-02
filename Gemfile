@@ -26,6 +26,7 @@ gem 'pry'
 gem 'devise'
 gem 'activestorage-audio'
 gem 'active_storage_validations'
+gem 'simple_form'
 #gem 'bootstrap', '~> 5.0.0.beta3'
 #gem 'jquery-rails'
 #bootstrap gem, let's see if it works?

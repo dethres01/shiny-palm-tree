@@ -22,7 +22,9 @@ class PlaylistsController < ApplicationController
   # POST /playlists or /playlists.json
   def create
     @playlist = Playlist.new(playlist_params)
-
+    
+    @playlist.user = current_user
+    binding.pry
     respond_to do |format|
       if @playlist.save
         format.html { redirect_to @playlist, notice: "Playlist was successfully created." }
@@ -64,6 +66,6 @@ class PlaylistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def playlist_params
-      params.require(:playlist).permit(:name, :user_id_id)
+      params.require(:playlist).permit(:name, :user_id)
     end
 end
