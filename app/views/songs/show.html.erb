@@ -7,8 +7,12 @@
 
 <p>
   <strong>Youtube:</strong>
-  <%= @song.youtube %>
+  <%= youtube_video @song.youtube %>
 </p>
-
+<p>
+  <audio controls>
+    <source src="<%= rails_blob_url(@song.song_file) %>" type="<%= @song.song_file.content_type %>"></source>
+  </audio>
+</p>
 <%= link_to 'Edit', edit_song_path(@song) %> |
 <%= link_to 'Back', songs_path %>

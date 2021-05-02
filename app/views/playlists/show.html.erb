@@ -4,7 +4,16 @@
   <strong>Name:</strong>
   <%= @playlist.name %>
 </p>
-
+<% @playlist.songs.each do |song|%>
+  <p>
+    <%= song.name%>
+  </p>
+  <p>
+    <audio controls>
+      <source src="<%= rails_blob_url(song.song_file) %>" type="<%= song.song_file.content_type %>"></source>
+    </audio>    
+  </p>
+<%end%>
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>

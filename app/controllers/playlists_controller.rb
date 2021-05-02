@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_playlist, only: %i[ show edit update destroy ]
-
   # GET /playlists or /playlists.json
   def index
     @playlists = Playlist.all
@@ -24,7 +24,6 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(playlist_params)
     
     @playlist.user = current_user
-    binding.pry
     respond_to do |format|
       if @playlist.save
         format.html { redirect_to @playlist, notice: "Playlist was successfully created." }

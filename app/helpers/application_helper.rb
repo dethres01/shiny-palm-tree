@@ -7,4 +7,8 @@ module ApplicationHelper
     end
     link_to(name,'#', class: "add_fields", data: {id: id, fields: fields.gsub("\n","")})
   end
+  def youtube_video(url)
+    id = YouTubeAddy.extract_video_id(url)
+    render partial: 'songs/video', locals: { url: id }
+  end
 end
