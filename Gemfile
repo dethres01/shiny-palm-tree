@@ -26,8 +26,8 @@ gem 'pry'
 gem 'devise'
 gem 'activestorage-audio'
 gem 'active_storage_validations'
-gem 'bootstrap', '~> 5.0.0.beta3'
-gem 'jquery-rails'
+#gem 'bootstrap', '~> 5.0.0.beta3'
+#gem 'jquery-rails'
 #bootstrap gem, let's see if it works?
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
