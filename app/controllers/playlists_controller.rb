@@ -1,4 +1,5 @@
 class PlaylistsController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_playlist, only: %i[ show edit update destroy ]
   # GET /playlists or /playlists.json
