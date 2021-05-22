@@ -12,6 +12,6 @@ Turbolinks.start()
 ActiveStorage.start()
 require('./nested_forms/addFields')
 require('./nested_forms/removeFields')
-require('./playlist_control')
+//require('./playlist_control')
 import "bootstrap"
 import "../stylesheets/application"
