@@ -1,25 +1,22 @@
 @import "bootstrap";
 
-#playlist_list, audio{
-  background:#666;
-  width:400px;
-  padding:20px;
-  list-style: none;
-  font-family: Arial, Helvetica, sans-serif;
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #e8eef2;
 }
-a {
-  text-decoration:none;
+
+.navbar{
+  background-color: #272838;
 }
-.active a {
-  color:#5DB0E6;
-  text-decoration:none;
+.header{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
-li a{
-  color:#eeeedd;
-  background:#333;
-  padding:5px;
-  display:block;
+.header a {
+  color: #e8eef2;
 }
-li a:hover{
-  text-decoration:none;
+.user__menu{
+  background-color: #272838;
 }

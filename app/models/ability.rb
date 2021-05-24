@@ -14,9 +14,14 @@ class Ability
       can :manage, :dashboard
     end
     if user.user_role?
+      #song
       can :read, Song
       can :create, Song
       can :manage, Song, artist_id: user.id
+      #playlist
+      can :read, Playlist
+      can :create, Playlist
+      can :manage, Playlist, user_id: user.id
     end
     #     can :manage, :all
     #   else
