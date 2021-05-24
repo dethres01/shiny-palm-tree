@@ -1,15 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid header">
-    <%= link_to 'Spotitwo', root_path, class: "navbar-brand"%>
-    <% if user_signed_in? %>
-        <div>
-          
-        </div>
-    <%else%>
-        <div>
-        <button class= "btn"><%=link_to 'Sign Up',new_user_registration_path%></button>
-        <button class= "btn"><%=link_to 'Log In',new_user_session_path%></button>
-        </div>
-    <%end%>
+<nav class = "navbar navbar-expand-lg navbar-dark">
+  <%= link_to "Spotitwo",root_path, class: "navbar-brand"%>
+  <button
+    class="navbar-toggler"
+    type = "button"
+    data-bs-toggle="collapse"
+    data-bs-target="#toggleMobileMenu"
+    aria-controls="toggleMobileMenu"
+    aria-expanded="false"
+    aria-label = "Toggle Navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="toggleMobileMenu">
+    <ul class="navbar-nav ms-auto text-center">
+      <% if user_signed_in?%>
+      <li><%= link_to "Log out", destroy_user_session_path, method: :delete,class: "nav-link"%></li>
+      <% else %>
+      <li><%= link_to "Sign In", new_user_registration_path, class: "nav-link"%></li>
+      <li><%= link_to "Log In", new_user_session_path, class: "nav-link"%></li>
+      <%end%>
+    </ul>
   </div>
 </nav>
