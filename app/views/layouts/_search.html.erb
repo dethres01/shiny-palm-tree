@@ -1,0 +1,13 @@
+<div class="mx-auto mt-5" style="width: 400px">
+    <%= form_tag("/search", method: "get") do %>
+      <div class="row mb-3">
+        <div class="col">
+          
+        </div>
+      <div class="d-flex justify-content-center">
+        <%= text_field_tag :s,nil,placeholder: "Buscar", class: "form-control me-3" %>
+        <%= submit_tag "Search", class:"btn btn-dark" %>
+      </div>
+    <% end %>
+  </div>
+</div>

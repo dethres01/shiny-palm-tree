@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <h1> Songs </h1>
+  </div>
+  <% if !@songs.blank?%>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Artist</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @songs.each do |song|%>
+        <tr>
+          <th scope="row"><%= song.name %></th>
+          <th><%= song.artist.email%></th>
+        </tr>
+      <%end%>
+      </tbody>
+    </table>
+  <%end%>
+  <% if !@playlists.blank?%>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">User</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @playlists.each do |playlist|%>
+        <tr>
+          <th scope="row"><%= playlist.name %></th>
+          <th><%= playlist.user.email%></th>
+        </tr>
+      <%end%>
+      </tbody>
+    </table>
+  <%end%>
+</div>

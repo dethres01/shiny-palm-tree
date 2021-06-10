@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :playlists
   devise_for :users
   resources :songs
+  get '/search' => 'search#search'
   authenticated :user do
     root :to => "songs#index", as: :authenticated_root
   end
