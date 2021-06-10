@@ -1,8 +1,7 @@
 <div class="container">
-  <div class="d-flex justify-content-center">
-    <h1> Songs </h1>
-  </div>
+
   <% if !@songs.blank?%>
+    <h1> Songs </h1>
     <table class="table">
       <thead>
         <tr>
@@ -21,6 +20,7 @@
     </table>
   <%end%>
   <% if !@playlists.blank?%>
+    <h1> Playlists </h1>
     <table class="table">
       <thead>
         <tr>
