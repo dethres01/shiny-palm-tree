@@ -1,35 +1,100 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+  <div class="card mt-5 mb-5">
+    <div class="card-header">
+      Editar Perfil
+    </div>
+    <div class="card-body">
+      <div class="card-text mb-3 row align-items-end">
+        <div class="col-4">
+          <%= f.input :email, required: true, autofocus: true, input_html: {disabled: true,id:"email", class: "form-control"}, label_html:{class: "form-label fw-bold"} %>
+        </div>
+        <div class="col-4 ">
+          <button type="button" class="btn btn-outline-dark" onclick="toggleEnable('email')">Editar</button>
+        </div>
+        
+      </div>
+      <div class="card-text mb-3 row align-items-end">
+        <div class="col-4">
+          <%= f.input :username, required: true, autofocus: true, input_html: {disabled: true,id:"username", class: "form-control"}, label_html:{class: "form-label fw-bold"} %>
+        </div>
+        <div class="col-4 ">
+          <button type="button" class="btn btn-outline-dark" onclick="toggleEnable('username')">Editar</button>
+        </div>
+      </div>
+      <p>*dejar el espacio de contraseña vacio si no se desea cambiar</p>
+      <div class="card-text mb-3 row align-items-end">
+        <div class="col-4">
+                  <%= f.input :password,
+                  required: false,
+                  input_html: {disabled: true,id:"password1", autocomplete: "new-password",class:"form-control" },
+                  label_html: {class:"form-label"} %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
+        </div>
+        <div class="col-4">
+                      <%= f.input :password_confirmation,
+                  required: false,
+                  input_html: {disabled: true,id:"password2", autocomplete: "new-password",class:"form-control" },
+                  label_html: {class:"form-label"} %>
+        </div>
+        <div class="col-4 ">
+          <button type="button" class="btn btn-outline-dark" onclick="togglepassword('password1','password2')">Editar</button>
+        </div>
+      </div>
+      <p>*Se necesita tu contraseña actual para confirmar cambios</p>
+      <div class="card-text mb-3 row align-items-end">
+        <div class="col-4">
+                    <%= f.input :current_password,
+                  required: true,
+                  input_html: {class:"form-control" },
+                  label_html: {class:"form-label"} %>
+        </div>
+        <div class="col-4">
+          <%= f.button :submit, "Actualizar", class:"btn-outline-dark"%>
+        </div>
+      </div>
+    </div>
+  </div>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
+
 <% end %>
+<div class="card mb-3 mt-3">
+  <div class="card-title mb-3 d-flex justify-content-center">
+    <h3>Cancelar cuenta</h3>
+  </div>
+  <div class="card-body mb-2 d-flex justify-content-center">
+    <p>No Satisfech@? <%= link_to "Cancelar Cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"link-danger" %></p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= link_to "Regresar", :back, class:"link-primary" %>
+  </div>
+</div>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+
+<script>
+  function toggleEnable(id){
+    var field = document.getElementById(id)
+    if (field.disabled){
+      document.getElementById(id).disabled = false
+    }else{
+      document.getElementById(id).disabled = true
+    }
+  }
+    function togglepassword(id1,id2){
+    var field1 = document.getElementById(id1)
+    var field2 = document.getElementById(id2)
+    if (field1.disabled && field2.disabled){
+      document.getElementById(id1).disabled = false
+      document.getElementById(id2).disabled = false
+    }else{
+      document.getElementById(id1).disabled = true
+      document.getElementById(id2).disabled = true
+    }
+  }
+</script>

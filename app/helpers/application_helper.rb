@@ -12,4 +12,9 @@ module ApplicationHelper
     #<- watch?v= id 
     render partial: 'songs/video', locals: { url: id }
   end
+  def page_exception()
+    if (current_page?(edit_user_registration_path))
+      return true
+    end
+  end
 end

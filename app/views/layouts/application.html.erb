@@ -16,7 +16,7 @@
       <%= render 'layouts/alerts'%>
     </div>
     <% if user_signed_in?%>
-      <%= render 'layouts/search'%>
+      <%= render 'layouts/search' unless page_exception()%>
     <%end%>
     <%= yield %>
   </body>

@@ -14,7 +14,8 @@
   <div class="collapse navbar-collapse" id="toggleMobileMenu">
     <ul class="navbar-nav ms-auto text-center">
       <% if user_signed_in?%>
-      <li><%= link_to "Log out", destroy_user_session_path, method: :delete,class: "nav-link"%></li>
+      <li><%= link_to "Editar Perfil", edit_user_registration_path, class:"nav-link active"%>
+      <li><%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete,class: "nav-link active"%></li>
       <% else %>
       <li><%= link_to "Registrarse", new_user_registration_path, class: "nav-link active"%></li>
       <li><%= link_to "Iniciar sesion", new_user_session_path, class: "nav-link active"%></li>
