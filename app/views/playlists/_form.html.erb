@@ -10,15 +10,31 @@
       </ul>
     </div>
   <% end %>
-  <%= f.input :name %>
-  <h3>songs</h3>
-  <div id="songs">
-    <%= f.simple_fields_for :song_playlists do |song| %>
-      <%= render 'song_playlist_fields', f: song %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_fields 'add song', f, :song_playlists %>
+  <div class = "row justify-content-center align-items-center">
+    <div class="col-4">
+      <%= f.input :name,input_html: {class: "form-control"},
+      label_html: {class: "form-label"} %>
+    </div>
+    <div class="col-4 form-check form-switch mt-4">
+      <%= f.input :public, label:"Publica", input_html:{class:"form-check-input"},label_html:{class:"form-check-label"}%>
     </div>
   </div>
-  <%= f.button :submit %>
+  <div class="d-flex justify-content-center mt-4">
+    <h3>Canciones</h3>
+  </div>
+  <div id="songs">
+
+      <%= f.simple_fields_for :song_playlists do |song| %>
+        
+          <%= render 'song_playlist_fields', f: song %>
+
+      <% end %>
+    </div>
+    <div class="i dunno, pls help">
+    <%= link_to_add_fields 'add song', f, :song_playlists %>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= f.button :submit,"Crear", class: "btn btn-dark" %>
+  </div>
 <% end %>

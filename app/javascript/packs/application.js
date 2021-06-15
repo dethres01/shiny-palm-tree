@@ -10,8 +10,13 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+const application = Application.start()
+const context = require.context("../controllers", true, /\.js$/)
+application.load(definitionsFromContext(context))
 require('./nested_forms/addFields')
 require('./nested_forms/removeFields')
-//require('./playlist_control')
 import "bootstrap"
 import "../stylesheets/application"

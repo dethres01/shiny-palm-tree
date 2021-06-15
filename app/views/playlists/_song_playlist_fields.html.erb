@@ -1,5 +1,10 @@
-<div class="nested-fields">
+<div class="nested-fields row g-2 justify-content-center align-items-end">
   <%= f.input :_destroy, as: :hidden%>
-  <%= f.input :song_id, collection: Song.all%>
-  <%= link_to "remove song",'#', class: "remove_fields btn btn-danger" %>
+  <div class="col-2">
+    <%= link_to "Remove", '#', class: "remove_fields btn btn-danger" %>
+  </div>
+  <div class="col-4">
+    <%= f.input :song_id,label:"Cancion", collection: Song.all,input_html: {class:"form-control"},
+    label_html:{class:"form-label"}%>
+  </div>
 </div>

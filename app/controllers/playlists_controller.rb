@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
   before_action :set_playlist, only: %i[ show edit update destroy ]
   # GET /playlists or /playlists.json
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.where("user_id = #{current_user.id}")
   end
 
   # GET /playlists/1 or /playlists/1.json
