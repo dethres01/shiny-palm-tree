@@ -1,29 +1,27 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Playlists</h1>
+<div class="d-flex justify-content-center mt-4">
+  <h1>Tus Playlists</h1>
+</div>
+<div class="d-flex justify-content-center mt-4">
+  <%= link_to 'Nueva Playlist', new_playlist_path, class: "btn btn-success" %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @playlists.each do |playlist| %>
-      <tr>
-        <td><%= playlist.name %></td>
-        <td><%= playlist.user_id %></td>
-        <td><%= link_to 'Show', playlist %></td>
-        <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
-        <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="container">
+        <div class="d-flex justify-content-center">
+          <div class="card mt-4" style="width: 500px;">
+            <div class="card-body">
+              <h5 class="card-title"><%= playlist.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= playlist.user.username %></h6>
+              <p class="card-text"><%= playlist.description%></p>
+              <%= link_to 'Ir a Playlist', playlist, class:"card-link btn btn-info" %>
+              <%= link_to 'Editar Playlist', edit_playlist_path(playlist), class:"card-link btn btn-warning" %>
+              <%= link_to 'Eliminar', playlist, method: :delete, data: { confirm: 'Esta de acuerdo con la decisión? La acción no es reversible' }, class: "card-link btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Playlist', new_playlist_path %>
+
