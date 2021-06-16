@@ -30,7 +30,7 @@ gem 'simple_form'
 gem 'youtube_addy'
 gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
-#gem 'cocoon'
+gem 'cocoon'
 #gem 'bootstrap', '~> 5.0.0.beta3'
 #gem 'jquery-rails'
 #bootstrap gem, let's see if it works?
