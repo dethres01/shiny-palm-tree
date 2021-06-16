@@ -1,83 +1,175 @@
+<div class="playlist">
+    <section id="home">
+        <div class="container">
+            <div class="collection">
+                <h1 class="heading"><%= @playlist.name%></h1>
+                <p class="lead"><%=@playlist.description%></p>
+                    <hr class="hor">
+                    <div id="musicbox" class="musicbox">
+                    <h2>Playlist</h2>
+                </div>
+            </div>
+            
+            <div class="playbox">
+                <nav>
+                    <ul>
+                        <li class="nav-link"><a href="./page/about.html"><%= link_to 'Regresar a la pagina',root_path%></a></li>
+                    </ul>
+                </nav>
+                <h1 class="heading">Zen Lofi Player</h1>
+                <div class="controller">
+                    <div id="circle-bg" class="circle">
+                        <div id="circle-sm" class="circle2"><img id="cover" src="" class="fluid-img"></div>
+                    </div>
+                    <div class="songs">
+                        <h2 id="song-name"><%=@playlist.songs.first.name%></h2>
+                        <div class="controls">
+                            <audio id="audio" src=""></audio>
+                            <img id="backward" class="media-btn" src="<%=asset_path("backward-button.png")%>">
+                            <img id="play-stop" class="media-btn">
+                            <img id="forward" class="media-btn" src="<%= asset_path("fast-forward.png") %>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 
-<p>
-  <strong>Name:</strong>
-  <%= @playlist.name %>
-</p>
-<audio id="audio" preload="auto" tabindex="0" controls="">
-  <source src="<%= rails_blob_url(@playlist.songs.first.song_file)%>">
-</audio>
-<ul id="playlist_list">
-  <li class="active">
-    <a href="<%= rails_blob_url(@playlist.songs.first.song_file)%>">
-      <%= @playlist.songs.first.name%>
-    </a>
-  </li>
-  <% (@playlist.songs-[@playlist.songs.first]).each do |song|%>
-    <li>
-      <a href="<%= rails_blob_url(song.song_file)%>">
-        <%= song.name%>
-      </a>
-    </li>
-  <%end%>
-</ul>
 
-<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
-<%= link_to 'Back', playlists_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
 
 <script>
-console.log("init");
-init();
-function init(){
-  var audio = document.getElementById('audio');
-  var playlist = document.getElementById('playlist_list');
-  var tracks = playlist.getElementsByTagName('a');
-  audio.volume = 0.10;
-  audio.play();
-  
-  for(var track in tracks) {
-    var link = tracks[track];
-    if(typeof link === "function" || typeof link === "number") continue;
-    
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      var song = this.getAttribute('href');
-       run(song, audio, this);
+  // media controllers
+  const playPause = document.querySelector("#play-stop");
+  const backward = document.querySelector("#backward");
+  const forward = document.querySelector("#forward");
+
+  // record player animation
+  const circleBig = document.querySelector("#circle-bg");
+  const circleSm = document.querySelector("#circle-sm");
+
+  // playing song
+  const songName = document.querySelector("#song-name");
+  const audio = document.querySelector("#audio");
+  const coverArt = document.querySelector("#cover");
+  const musicbox = document.querySelector("#musicbox");
+
+  // control button images
+  let playImg = "<%= asset_path('play.svg')%>";
+  let pauseImg = "<%= asset_path('pause.svg')%>";
+
+  // default controls
+  playPause.src = playImg;
+  let isPlaying = true;
+  var songList = [];
+  <% @playlist.songs.each do |song|%>
+    songList.push({
+      name: "<%= song.name%>",
+      source: "<%= rails_blob_url(song.song_file)%>",
+      cover: "<%= asset_path('play.svg')%>"
     });
+  <%end%>
+  // helper function
+  function createEle(ele) {
+      return document.createElement(ele);
   }
-  
-  audio.addEventListener('ended',function(e) {
-      for(var track in tracks) {
-        var link = tracks[track];
-        var nextTrack = parseInt(track) + 1;
-        if(typeof link === "function" || typeof link === "number") continue;
-        if(!this.src) this.src = tracks[0];
-        if(track == (tracks.length - 1)) nextTrack = 0;
-                                console.log(nextTrack);
-        if(link.getAttribute('href') === this.src) {
-          var nextLink = tracks[nextTrack];
-          run(nextLink.getAttribute('href'), audio, nextLink);
-          break;
-        }
-      }
-  });
-}
+  function append(parent, child) {
+      return parent.append(child);
+  }
+  // creating track list
+  const ul = createEle('ul')
+  function createPlayList() {
+      songList.forEach((song) => {
+          let h3 = createEle('h3');
+          let li = createEle('li');
 
-function run(song, audio, link){
-      var parent = link.parentElement;
+          li.classList.add("track-item");
+          h3.innerText = song.name;
+          append(li,h3);
+          append(ul,li)
+      })
+      append(musicbox, ul);
+  }
 
-      //quitar el active de todos los elementos de la lista
-      var items = parent.parentElement.getElementsByTagName('li');
-      for(var item in items) {
-        if(items[item].classList)
-          items[item].classList.remove("active");
-      }
-      
-      //agregar active a este elemento
-      parent.classList.add("active");
-      
-      //tocar la cancion
-      audio.src = song;
-      audio.load();
+  let songIndex = 0;
+  // preloaded song
+  loadMusic(songList[songIndex]);
+
+
+  function loadMusic() {
+      coverArt.src = songList[songIndex].cover;
+      songName.innerText = songList[songIndex].name;
+      audio.src = songList[songIndex].source;
+  }
+
+  function playSong() {
+      playPause.src = pauseImg;
+      circleBig.classList.add("animate");
+      circleSm.classList.add("animate");
+
       audio.play();
-    }
+  }
+
+  function pauseSong() {
+      playPause.src = playImg;
+      circleBig.classList.remove("animate");
+      circleSm.classList.remove("animate");
+
+      audio.pause();
+  }
+
+  function nextPlay() {
+      songIndex++;
+      if(songIndex > songList.length - 1) {
+          songIndex = 0;
+      }
+      loadMusic(songList[songIndex]);
+      playSong()
+  }
+
+  function backPlay() {
+      songIndex--;
+      if(songIndex < 0) {
+          songIndex = songList.length - 1;
+      }
+      loadMusic(songList[songIndex]);
+      playSong()
+  }
+  function playHandler() {
+      isPlaying = !isPlaying;
+      //console.log("Change: ",isPlaying)
+      isPlaying ? pauseSong() : playSong();
+  }
+
+
+  // player event 
+  playPause.addEventListener("click", playHandler);
+  backward.addEventListener("click", backPlay);
+  forward.addEventListener("click", nextPlay);
+
+  createPlayList();
+  
+  
 </script>

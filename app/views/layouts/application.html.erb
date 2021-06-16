@@ -12,13 +12,13 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   </head>
-  <body class="bg-light">
-    <%= render "layouts/navbar"%>
+  <body class="<%= 'playlistbg' if @dont%>">
+    <%= render "layouts/navbar" unless @dont%>
     <div class= "container">
       <%= render 'layouts/alerts'%>
     </div>
     <% if user_signed_in?%>
-      <%= render 'layouts/search' unless page_exception()%>
+      <%= render 'layouts/search' unless page_exception() || @dont%>
     <%end%>
     <%= yield %>
   </body>

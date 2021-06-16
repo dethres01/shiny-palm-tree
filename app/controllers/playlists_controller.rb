@@ -9,6 +9,7 @@ class PlaylistsController < ApplicationController
 
   # GET /playlists/1 or /playlists/1.json
   def show
+    @dont = true
   end
 
   # GET /playlists/new
