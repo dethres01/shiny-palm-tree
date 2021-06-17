@@ -1,0 +1,36 @@
+<% if @songs != []%>
+
+<div class="d-flex justify-content-center mt-4">
+  <h1>Mis Canciones</h1>
+</div>
+<div class="d-flex justify-content-center mt-4">
+  <%= link_to 'Subir Nueva Cancion', new_song_path, class: "btn btn-info" %>
+</div>
+
+  <% @songs.each do |song| %>
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <div class="card mt-4" style="width: 500px;">
+          <div class="card-body">
+            <h5 class="card-title"><%= song.name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= song.artist.username %></h6>
+            <p class="card-text"><%= song.youtube%></p>
+            <%= link_to 'Ir a Cancion', song, class:"card-link btn btn-info",:"data-turbolinks" => false %>
+            <%= link_to 'Editar Cancion', edit_song_path(song), class:"card-link btn btn-warning" %>
+            <%= link_to 'Eliminar', song, method: :delete, data: { confirm: 'Esta de acuerdo con la decisión? La acción no es reversible' }, class: "card-link btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<%else%>
+  <div class="d-flex justify-content-center mt-4">
+    <h3>Parece que no tiene canciones propias<h3>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <h4>¿Desea Subir una cancion?<h4>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <%= link_to "Subir Cancion", new_song_path,class:"btn btn-info mt-4"%>
+  </div>
+<%end%>

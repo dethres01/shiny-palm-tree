@@ -69,7 +69,8 @@ class PlaylistsController < ApplicationController
     def playlist_params
       params.require(:playlist).permit(:name,
          :user_id,
-         :description, 
+         :description,
+         :public, 
          song_playlists_attributes: [:id,:song_id,:_destroy])
     end
 end

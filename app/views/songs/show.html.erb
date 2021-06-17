@@ -1,18 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @song.name %>
-</p>
-
-<p>
-  <strong>Youtube:</strong>
-  <%= youtube_video @song.youtube %>
-</p>
-<p>
+<div class="d-flex justify-content-center mt-4">
+  <h2><%=@song.name%> by <%= @song.artist.username%><h2>
+</div>
+<div class="d-flex justify-content-center mt-4">
   <audio controls>
     <source src="<%= rails_blob_url(@song.song_file) %>" type="<%= @song.song_file.content_type %>"></source>
   </audio>
-</p>
-<%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>
+</div>
+<div class="d-flex justify-content-center mt-4">
+  <%= youtube_video @song.youtube %>
+</div>
+<div class="d-flex justify-content-center mt-4">
+  <% if @song.artist == current_user%>
+    <%= link_to 'Editar Cancion', edit_song_path(@song), class:"btn btn-info me-4" %>
+    <%= link_to 'Eliminar', @song, method: :delete, data: { confirm: 'Esta de acuerdo con la decisión? La acción no es reversible' }, class: "card-link btn btn-danger me-4" %>
+  <% end %> 
+  <%= link_to 'Regresar', songs_path, class:"btn btn-info me-4" %>
+</div>

@@ -8,8 +8,8 @@ class SongsController < ApplicationController
     @songs = Song.all
       
   end
-  def personal
-    @songs = Song.where("artist_id=#{current_user.id}")
+  def mysongs
+    @songs = Song.where("artist_id = #{current_user.id}")
   end
   # GET /songs/1 or /songs/1.json
   def show

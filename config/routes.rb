@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :songs
   get '/search' => 'search#search'
-  get 'songs/personal' => 'songs#personal'
+  get '/mysongs' => 'songs#mysongs'
   authenticated :user do
     root :to => "songs#index", as: :authenticated_root
   end

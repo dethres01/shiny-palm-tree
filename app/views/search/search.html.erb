@@ -2,18 +2,20 @@
 
   <% if !@songs.blank?%>
     <h1> Songs </h1>
-    <table class="table">
+    <table class="table table-striped table-hover table-dark">
       <thead>
         <tr>
           <th scope="col">Nombre</th>
           <th scope="col">Artist</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
       <% @songs.each do |song|%>
         <tr>
-          <th scope="row"><%= song.name %></th>
-          <th><%= song.artist.email%></th>
+          <td scope="row"><%= song.name %></td>
+          <td><%= song.artist.username%></td>
+          <td><%= link_to 'Ir a Cancion', song, class:"btn btn-info"%></td>
         </tr>
       <%end%>
       </tbody>
@@ -21,18 +23,20 @@
   <%end%>
   <% if !@playlists.blank?%>
     <h1> Playlists </h1>
-    <table class="table">
+    <table class="table table-striped table-hover table-dark">
       <thead>
         <tr>
           <th scope="col">Nombre</th>
           <th scope="col">User</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
       <% @playlists.each do |playlist|%>
         <tr>
-          <th scope="row"><%= playlist.name %></th>
-          <th><%= playlist.user.email%></th>
+          <td scope="row"><%= playlist.name %></td>
+          <td><%= playlist.user.username%></td>
+          <td><%= link_to 'Ir a Playlist', playlist, class:"btn btn-info",:"data-turbolinks" => false %></td>
         </tr>
       <%end%>
       </tbody>
