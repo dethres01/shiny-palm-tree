@@ -6,8 +6,11 @@ class SongsController < ApplicationController
   # GET /songs or /songs.json
   def index
     @songs = Song.all
+      
   end
-
+  def personal
+    @songs = Song.where("artist_id=#{current_user.id}")
+  end
   # GET /songs/1 or /songs/1.json
   def show
   end

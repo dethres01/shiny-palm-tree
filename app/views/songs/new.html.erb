@@ -1,10 +1,11 @@
-<div class= "container-fluid">
-  <div class= "row ">
-    <div class="d-flex justify-content-center">
-      <h3>New Song <h3>
-    </div>
-  </div>
-  <div class = "row">
-    <%= render 'form', song: @song %>
-  </div>
+<div class="d-flex justify-content-center mt-4">
+  <h2>Subir Cancion</h2>
+</div>
+
+
+<%= render 'form', song: @song %>
+
+
+<div class="d-flex justify-content-center mt-4">
+  <%= link_to 'Regresar a Inicio', root_path, class:"btn btn-info"%>
 </div>

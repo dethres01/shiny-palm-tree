@@ -8,8 +8,7 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields btn btn-success", data: {id: id, fields: fields.gsub("\n", "")})
   end
   def youtube_video(url)
-    id = YouTubeAddy.extract_video_id(url) #id
-    #<- watch?v= id 
+    id = YouTubeAddy.extract_video_id(url)
     render partial: 'songs/video', locals: { url: id }
   end
   def page_exception()

@@ -1,6 +1,11 @@
-<h1>Editing Song</h1>
+<div class="d-flex justify-content-center mt-4">
+  <h1>Editar información en Playlist</h1>
+</div>
+
 
 <%= render 'form', song: @song %>
 
-<%= link_to 'Show', @song %> |
-<%= link_to 'Back', songs_path %>
+<div class="d-flex justify-content-center mt-4">
+  <%= link_to 'Ir a Cancion', @song, class:"me-4 btn btn-info" %>
+  <%= link_to 'Regresar a Inicio', songs_path,class:"me-4 btn btn-info" %>
+</div>
