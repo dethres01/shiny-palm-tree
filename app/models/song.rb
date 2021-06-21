@@ -12,7 +12,7 @@
 class Song < ApplicationRecord
   #associations
   belongs_to :artist, class_name: "User"
-  has_many :song_playlists
+  has_many :song_playlists,dependent: :destroy
   has_many :playlists, through: :song_playlists
   has_one_attached :song_file
   #validations

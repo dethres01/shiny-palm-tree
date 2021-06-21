@@ -10,7 +10,7 @@
 #
 class Playlist < ApplicationRecord
   belongs_to :user
-  has_many :song_playlists
+  has_many :song_playlists,dependent: :destroy
   has_many :songs, through: :song_playlists
 
   accepts_nested_attributes_for :song_playlists, reject_if: :all_blank, allow_destroy: true
